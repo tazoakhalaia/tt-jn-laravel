@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\HotelsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,4 +14,8 @@ Route::controller(EventsController::class)->group(function () {
     Route::post('/events', 'postEventsRequest')->name('events.post');
     Route::delete('/events/{events}', 'destroy')->name('events.delete');
     Route::put('/events/{events}', 'update')->name('events.update');
+});
+
+Route::controller(HotelsController::class)->group(function () {
+    Route::get('/hotels', 'getAllHotels')->name('hotels.get');
 });

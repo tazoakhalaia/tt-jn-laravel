@@ -14,12 +14,18 @@ class EventsController extends Controller
         return response()->json($events);
     }
 
-    public function sendEventsRequest(EventsRequest $eventsRequest, Events $events) : JsonResponse
+    public function postEventsRequest(EventsRequest $eventsRequest, Events $events) : JsonResponse
     {
         $events = Events::create([
             ...$eventsRequest->validated()
         ]);
         
         return response()->json(['message' => 'Event Created Successfully', 'events' => $events]);
+    }
+
+    public function destroy(Events $events) : JsonResponse
+    {
+        $events->delete();
+        return response()->json(['message' => 'Event Deleted Successfully']);
     }
 }

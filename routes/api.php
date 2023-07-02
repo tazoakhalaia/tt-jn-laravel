@@ -12,4 +12,5 @@ Route::controller(EventsController::class)->group(function () {
     Route::get('/events', 'getAllEvents')->name('events.get');
     Route::post('/events', 'postEventsRequest')->name('events.post');
     Route::delete('/events/{events}', 'destroy')->name('events.delete');
+    Route::put('/events/{events}', 'update')->name('events.update');
 });

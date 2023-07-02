@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EventsRequest;
+use App\Http\Requests\EventsRequests\EventsRequest;
+use App\Http\Requests\EventsRequests\UpdateEventsRequest;
 use App\Models\Events;
 use Illuminate\Http\JsonResponse;
 
@@ -27,5 +28,11 @@ class EventsController extends Controller
     {
         $events->delete();
         return response()->json(['message' => 'Event Deleted Successfully']);
+    }
+
+    public function update(UpdateEventsRequest $updateEventsRequest, Events $events) : JsonResponse
+    {
+        $events->update($updateEventsRequest->validated());
+        return response()->json(['message' => 'Event Updated Successfully']);
     }
 }

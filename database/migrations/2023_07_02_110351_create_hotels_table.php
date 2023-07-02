@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
             $table->string('hotel_name');
-            $table->string('hote_location');
+            $table->string('hotel_location');
             $table->string('hotel_description');
             $table->string('hotel_host_number');
             $table->string('hotel_rooms');

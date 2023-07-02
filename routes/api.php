@@ -18,4 +18,5 @@ Route::controller(EventsController::class)->group(function () {
 
 Route::controller(HotelsController::class)->group(function () {
     Route::get('/hotels', 'getAllHotels')->name('hotels.get');
+    Route::post('/hotels', 'store')->name('hotels.post');
 });

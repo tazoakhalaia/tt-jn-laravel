@@ -8,5 +8,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::get('/events', [EventsController::class, 'getAllEvents'])->name('events.json');
+Route::controller(EventsController::class)->group(function () {
+    Route::get('/events', 'getAllEvents')->name('events.get');
+    Route::post('/events', 'sendEventsRequest')->name('events.post');
+});

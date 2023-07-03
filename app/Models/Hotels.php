@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Hotels extends Model
 {
     use HasFactory;
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
+    
     protected $fillable = [
         'hotel_name',
         'hotel_location',
@@ -29,5 +33,7 @@ class Hotels extends Model
         'price_daily',
         'price_monthly',
         'price_yearly',
+        'discount',
+        'user_id'
     ];
 }

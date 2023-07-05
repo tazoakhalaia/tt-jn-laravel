@@ -20,4 +20,5 @@ Route::controller(HotelsController::class)->group(function () {
     Route::get('/hotels/{id}', 'getUserHotels')->name('hotels.user.id');
     Route::get('/hotels', 'getAllHotels')->name('hotels.get');
     Route::post('/hotels', 'store')->name('hotels.post');
+    Route::put('/hotels/{hotels}', 'update')->name('hotels.update');
 });

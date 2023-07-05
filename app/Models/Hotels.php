@@ -34,6 +34,6 @@ class Hotels extends Model
         'price_monthly',
         'price_yearly',
         'discount',
-        'user_id'
+        'user_id',
     ];
 }

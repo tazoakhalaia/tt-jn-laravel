@@ -9,15 +9,15 @@ use Illuminate\Http\JsonResponse;
 
 class HotelsController extends Controller
 {
-    public function getUserHotels($id)
+    public function getHotelById($id)
     {
-        $hotels = Hotels::Where('user_id', $id)->first();
+        $hotels = Hotels::Where('id', $id)->first();
         if($hotels)
         {
-            return response()->json(['message' => 'ok', 'user' => $hotels->all(), 'success' => true]);
+            return response()->json(['message' => 'ok', 'data' => $hotels, 'success' => true]);
         }
         
-        return response()->json(['message' => 'User not found']);
+        return response()->json(['message' => 'Hotel not found', 'success' => false]);
     }
 
     public function getAllHotels() : JsonResponse
@@ -38,5 +38,11 @@ class HotelsController extends Controller
     {
         $hotels->update($updateHotelsRequest->validated());
         return response()->json(['message' => 'Hotel updated Successfully', 'success' => true ]);
+    }
+
+    public function destroy(Hotels $hotels) : JsonResponse
+    {
+        $hotels->delete();
+        return response()->json(['message' => 'Hotel delated', 'success' => true]);
     }
 }

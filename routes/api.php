@@ -17,8 +17,9 @@ Route::controller(EventsController::class)->group(function () {
 });
 
 Route::controller(HotelsController::class)->group(function () {
-    Route::get('/hotels/{id}', 'getUserHotels')->name('hotels.user.id');
+    Route::get('/hotels/{id}', 'getHotelById')->name('hotels.get.by.id');
     Route::get('/hotels', 'getAllHotels')->name('hotels.get');
     Route::post('/hotels', 'store')->name('hotels.post');
     Route::put('/hotels/{hotels}', 'update')->name('hotels.update');
+    Route::delete('/hotels/{hotels}', 'destroy')->name('hotels.destroy');
 });

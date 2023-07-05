@@ -30,9 +30,11 @@ return new class extends Migration
             $table->boolean('pet_friendly');
             $table->string('available_time');
             $table->string('price_daily');
-            $table->foreignId('user_id');
             $table->string('price_monthly')->nullable();
             $table->integer('discount')->nullable();
+            $table->boolean('active')->default(false);
+            $table->enum('success', ['Pending', 'Success', 'Rejected'])->default('Pending');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

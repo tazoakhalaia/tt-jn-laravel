@@ -4,12 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Hotels extends Model
 {
     use HasFactory;
-    public function users(){
+    public function users() : BelongsTo
+    {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeOrderByPriceDaily($query, $sort = 'asc') 
+    {
+        return $query->orderBy('price_daily', $sort);
+    }
+
+    public function scopeFilterByLocationName($query, $locationName)
+    {
+        return $query->where('hotel_location', $locationName);
     }
     
     protected $fillable = [

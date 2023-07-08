@@ -6,6 +6,7 @@ use App\Http\Requests\HotelsRequests\HotelsRequest;
 use App\Http\Requests\HotelsRequests\UpdateHotelsRequest;
 use App\Models\Hotels;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class HotelsController extends Controller
 {
@@ -20,10 +21,23 @@ class HotelsController extends Controller
         return response()->json(['message' => 'Hotel not found', 'success' => false]);
     }
 
-    public function getAllHotels() : JsonResponse
+    public function getAllHotels(Request $request) : JsonResponse
     {
-        $hotels = Hotels::all();
-        return response()->json(['data' => $hotels, 'success' => true]);
+        $hotels = Hotels::query();
+        $locationName = $request->input('locationName');
+
+        $sort = $request->input('sort');
+        if ($sort) {
+            $hotels->orderBy('price_daily', $sort);
+        }
+        
+        if ($locationName) {
+            $hotels->filterByLocationName($locationName);
+        }
+
+        $hotelsData = $hotels->get();
+        
+        return response()->json(['data' => $hotelsData, 'success' => true]);
     }
 
     public function store(HotelsRequest $hotelsRequest, Hotels $hotels) : JsonResponse

@@ -24,9 +24,11 @@ class HotelsController extends Controller
     public function getAllHotels(Request $request) : JsonResponse
     {
         $hotels = Hotels::query();
+
         $locationName = $request->input('locationName');
 
         $sort = $request->input('sort');
+
         if ($sort) {
             $hotels->orderBy('price_daily', $sort);
         }

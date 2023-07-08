@@ -9,17 +9,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Hotels extends Model
 {
     use HasFactory;
+
     public function users() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function scopeOrderByPriceDaily($query, $sort = 'asc') 
+    public function scopeOrderByPriceDaily(object $query, string $sort = 'asc')
     {
         return $query->orderBy('price_daily', $sort);
     }
 
-    public function scopeFilterByLocationName($query, $locationName)
+    public function scopeFilterByLocationName(object $query, string $locationName)
     {
         return $query->where('hotel_location', $locationName);
     }

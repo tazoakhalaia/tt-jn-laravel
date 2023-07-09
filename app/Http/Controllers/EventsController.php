@@ -12,7 +12,7 @@ class EventsController extends Controller
     public function getAllEvents() : JsonResponse
     {
         $events = Events::all();
-        return response()->json($events);
+        return response()->json(['data' => $events, 'success' => true]);
     }
 
     public function postEventsRequest(EventsRequest $eventsRequest, Events $events) : JsonResponse
@@ -21,18 +21,18 @@ class EventsController extends Controller
             ...$eventsRequest->validated()
         ]);
         
-        return response()->json(['message' => 'Event Created Successfully', 'events' => $events]);
+        return response()->json(['message' => 'Event Created Successfully', 'events' => $events, 'success' => true]);
     }
 
     public function destroy(Events $events) : JsonResponse
     {
         $events->delete();
-        return response()->json(['message' => 'Event Deleted Successfully']);
+        return response()->json(['message' => 'Event Deleted Successfully', 'success' => true]);
     }
 
     public function update(UpdateEventsRequest $updateEventsRequest, Events $events) : JsonResponse
     {
         $events->update($updateEventsRequest->validated());
-        return response()->json(['message' => 'Event Updated Successfully']);
+        return response()->json(['message' => 'Event Updated Successfully', 'success' => true]);
     }
 }

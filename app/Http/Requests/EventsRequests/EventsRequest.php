@@ -17,7 +17,10 @@ class EventsRequest extends FormRequest
             'event_name' => 'required|min:3|max:30',
             'event_description' => 'required|min:3|max:30',
             'event_date' => 'required|min:3|max:30',
-            'event_location' => 'required|min:3|max:30'
+            'event_location' => 'required|min:3|max:30',
+            'duration' => 'required|min:3|max:30',
+            'price' => 'nullable',
+            'currency' => 'nullable'
         ];
     }
 }

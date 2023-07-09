@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\HotelsController;
+use App\Http\Controllers\ToursController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,9 @@ Route::controller(HotelsController::class)->group(function () {
     Route::post('/hotels', 'store')->name('hotels.post');
     Route::put('/hotels/{hotels}', 'update')->name('hotels.update');
     Route::delete('/hotels/{hotels}', 'destroy')->name('hotels.destroy');
+});
+
+Route::controller(ToursController::class)->group(function () {
+    Route::get('/tours', 'getTours')->name('tour.get');
+    Route::post('/tours', 'store')->name('tour.post');
 });

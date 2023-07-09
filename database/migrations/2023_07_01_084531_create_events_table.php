@@ -14,7 +14,10 @@ return new class extends Migration
             $table->string('event_name');
             $table->string('event_description');
             $table->string('event_date');
-            $table->string('event_location');
+            $table->string('event_location'); // filter
+            $table->integer('duration');
+            $table->string('price')->nullable(); // sort
+            $table->string('currency')->nullable();
             $table->timestamps();
         });
     }

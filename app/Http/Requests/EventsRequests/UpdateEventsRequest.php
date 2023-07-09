@@ -17,7 +17,8 @@ class UpdateEventsRequest extends FormRequest
             'event_name' => 'min:3|max:30',
             'event_description' => 'min:3|max:30',
             'event_date' => 'min:3|max:30',
-            'event_location' => 'min:3|max:30'
+            'event_location' => 'min:3|max:30',
+            'durations' => 'min:3|max:30'
         ];
     }
 }

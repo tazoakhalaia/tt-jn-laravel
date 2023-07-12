@@ -28,4 +28,6 @@ Route::controller(HotelsController::class)->group(function () {
 Route::controller(ToursController::class)->group(function () {
     Route::get('/tours', 'getTours')->name('tour.get');
     Route::post('/tours', 'store')->name('tour.post');
+    Route::delete('/tours/{tours}', 'destroy')->name('tours.destroy');
+    Route::put('/tours/{tours}', 'update')->name('tours.update');
 });

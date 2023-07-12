@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ToursRequests\TourRequest;
+use App\Http\Requests\ToursRequests\UpdateToursRequest;
 use App\Models\Tours;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -47,4 +48,16 @@ class ToursController extends Controller
         return response()->json(['message' => 'Tour Created Successfully', 'tours' => $tours, 'success' => true]);
     }
     
+    public function destroy(Tours $tours) : JsonResponse
+    {
+        $tours->delete();
+        return response()->json(['data' => $tours, 'success' => true]);
+    }
+
+    public function update(UpdateToursRequest $updateToursRequest, Tours $tours) : JsonResponse
+    {
+        $tours->update($updateToursRequest->validated());
+        return response()->json(['message' => 'Tour updated Successfully', 'success' => true ]);
+    }
+
 }

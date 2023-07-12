@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('tour_guide');
             $table->integer('duration');
             $table->integer('max_group_size');
-            $table->enum('difficulty', ['Easy','Medium', 'Difficult']); // filter
+            $table->enum('difficulty', ['Easy','Medium', 'Difficult']); 
             $table->integer('ratings_average');
             $table->integer('ratings_quantity');
-            $table->string('price'); //sort
-            $table->string('age_restriction')->nullable(); //filter
-            $table->string('stop_location'); //filter
+            $table->string('price');
+            $table->string('age_restriction')->nullable();
+            $table->string('stop_location');
             $table->string('tour_begin'); 
             $table->string('type');
             $table->integer('price_discount')->nullable();

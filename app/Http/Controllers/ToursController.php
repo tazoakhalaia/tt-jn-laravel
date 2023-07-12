@@ -9,10 +9,33 @@ use Illuminate\Http\Request;
 
 class ToursController extends Controller
 {
-    public function getTours() : JsonResponse
+    public function getTours(Request $request) : JsonResponse
     {
-        $tours = Tours::all();
-        return response()->json(['data' => $tours, 'success' => true]);
+        $tours = Tours::query();
+        $ageRestriction = $request->input('ageRestriction');
+        $stopLocation = $request->input('stopLocation');
+        $Difficulty = $request->input('difficulty');
+
+        if($ageRestriction){
+            if ($ageRestriction > 18) {
+                $tours->where('age_restriction', '>', 18);
+            } else {
+                $tours->where('age_restriction', '<', 18);
+            }
+        }
+
+        if($stopLocation){
+            $tours->where('stop_location', $stopLocation);
+        }
+
+        if($Difficulty)
+        {
+            $tours->where('difficulty', $Difficulty);
+        }
+
+        $toursData = $tours->get();
+
+        return response()->json(['data' => $toursData, 'success' => true]);
     }
 
     public function store(TourRequest $tourRequest, Tours $tours) : JsonResponse
